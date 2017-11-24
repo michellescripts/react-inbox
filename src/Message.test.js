@@ -17,3 +17,23 @@ it('applies the read class when the read prop is true', () => {
   const wrapper = shallow(<Message text='abc' read />).find('.row .message')
   expect(wrapper.hasClass('read')).toEqual(true)
 })
+
+describe('When the message is selected', () => {
+  let wrapper
+  beforeEach(() => {
+    wrapper = shallow(<Message text='abc' selected />)
+  })
+  it('applies the selected class', () => {
+    expect(wrapper.find('.row .message').hasClass('selected')).toEqual(true)
+  })
+  it('checks the checkbox', () => {
+    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual('checked')
+  })
+})
+
+describe('When the message is not selected', () => {
+  it('does not apply the selected class', () => {
+  })
+  it('does not check the checkbox', () => {
+  })
+})
