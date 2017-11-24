@@ -13,7 +13,7 @@ class App extends Component {
             <Toolbar />
           </div>
         </div>
-        <Message text= "Hi"/>
+        <Message text='Hi' />
       </div>
     )
   }
