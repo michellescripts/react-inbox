@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Toolbar from './Toolbar'
 import Unread from './Unread'
-import Message from './Message'
+import MessageList from './MessageList'
+import messages from './testdata'
 
 class App extends Component {
   render () {
@@ -13,7 +14,7 @@ class App extends Component {
             <Toolbar />
           </div>
         </div>
-        <Message text='Hi' />
+        <MessageList messages={messages} />
       </div>
     )
   }
