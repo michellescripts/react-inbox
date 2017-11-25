@@ -32,8 +32,25 @@ describe('When the message is selected', () => {
 })
 
 describe('When the message is not selected', () => {
+  let wrapper
+  beforeEach(() => {
+    wrapper = shallow(<Message text='abc' selected={false} />)
+  })
   it('does not apply the selected class', () => {
+    expect(wrapper.find('.row .message').hasClass('selected')).toEqual(false)
   })
   it('does not check the checkbox', () => {
+    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual(undefined)
   })
+})
+
+it('fills in the star when starred', () => {
+  const wrapper = shallow(<Message text='abc' starred />)
+  expect(wrapper.find('.star').hasClass('fa-star')).toEqual(true)
+})
+
+it('displays an empty star by default', () => {
+  const wrapper = shallow(<Message text='abc' />).find('.star')
+  expect(wrapper.hasClass('fa-star')).toEqual(false)
+  expect(wrapper.hasClass('fa-star-o')).toEqual(true)
 })

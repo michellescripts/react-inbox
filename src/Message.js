@@ -10,12 +10,9 @@ class Message extends Component {
   }
 
   renderInput () {
-    if (this.props.selected) {
-      return (
-        <input type="checkbox" checked="checked"/>
-      )
-    }
-    return (<input type="checkbox" />)
+    return this.props.selected
+      ? <input type="checkbox" checked="checked"/>
+      : <input type="checkbox" />
   }
 
   render () {
@@ -24,6 +21,10 @@ class Message extends Component {
       ? ' read'
       : ' unread'
     if (this.props.selected) { base += ' selected'}
+    let star = 'star fa'
+    star += this.props.starred === true
+      ? ' fa-star'
+      : ' fa-star-o'
     return (
       <div className={base}>
         <div className="col-xs-1">
@@ -32,7 +33,7 @@ class Message extends Component {
               {this.renderInput()}
             </div>
             <div className="col-xs-2">
-              <i className="star fa fa-star-o"></i>
+              <i className={star}></i>
             </div>
           </div>
         </div>
