@@ -80,6 +80,11 @@ class App extends Component {
     this.setState({messages: newMessages})
   }
 
+  handleDelete = () => {
+    const newMessages= this.state.messages.filter((message) => !message.selected)
+    this.setState({messages: newMessages})
+  }
+
   getSelectState () {
     const selected= this.state.messages.filter((message) => !!message.selected).length
     switch(selected) {
@@ -106,6 +111,7 @@ class App extends Component {
               onMarkReadClicked={() => this.handleMarkRead(true)}
               onMarkUnreadClicked={() => this.handleMarkRead(false)}
               onApplyLabel={this.handleLabel}
+              onDelete={this.handleDelete}
             />
             {this.renderComposeIfComposing()}
           </div>

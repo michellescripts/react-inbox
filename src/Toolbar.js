@@ -9,7 +9,8 @@ class Toolbar extends Component {
     onSelectClicked: PropTypes.func,
     onMarkReadClicked: PropTypes.func,
     onMarkUnreadClicked: PropTypes.func,
-    onApplyLabel: PropTypes.func
+    onApplyLabel: PropTypes.func,
+    onDelete: PropTypes.func
   }
 
   getSelectClass () {
@@ -69,7 +70,7 @@ class Toolbar extends Component {
           <option value='gschool'>gschool</option>
         </select>
 
-        <button className='btn btn-default'>
+        <button className='btn btn-default' onClick={this.props.onDelete}>
           <i className='fa fa-trash-o' />
         </button>
       </div>
