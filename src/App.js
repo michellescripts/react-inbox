@@ -63,6 +63,23 @@ class App extends Component {
     this.setState({messages: newMessages})
   }
 
+  handleLabel = (label, mode) => {
+    const newMessages = this.state.messages.map((message) => {
+      if (!message.selected){
+        return message
+      }
+      if (mode === 'add') {
+        if (message.labels.includes(label)) {
+          return message
+        }
+        return {...message, labels: message.labels.concat(label)}
+      } else {
+        return {...message, labels: message.labels.filter(l => l !== label)}
+      }
+    })
+    this.setState({messages: newMessages})
+  }
+
   getSelectState () {
     const selected= this.state.messages.filter((message) => !!message.selected).length
     switch(selected) {
@@ -88,6 +105,7 @@ class App extends Component {
               onSelectClicked={this.handleSelect}
               onMarkReadClicked={() => this.handleMarkRead(true)}
               onMarkUnreadClicked={() => this.handleMarkRead(false)}
+              onApplyLabel={this.handleLabel}
             />
             {this.renderComposeIfComposing()}
           </div>

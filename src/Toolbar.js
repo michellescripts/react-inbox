@@ -8,7 +8,8 @@ class Toolbar extends Component {
     select: PropTypes.oneOf(['all', 'some', 'none']),
     onSelectClicked: PropTypes.func,
     onMarkReadClicked: PropTypes.func,
-    onMarkUnreadClicked: PropTypes.func
+    onMarkUnreadClicked: PropTypes.func,
+    onApplyLabel: PropTypes.func
   }
 
   getSelectClass () {
@@ -21,6 +22,14 @@ class Toolbar extends Component {
       default:
         return 'fa-square-o'
     }
+  }
+
+  handleLabel = (e) => {
+    if (e.target.value === 'Apply label' || e.target.value === 'Remove label') {
+        return
+    }
+    const mode = e.target.id === 'addLabel' ? 'add' : 'remove'
+    this.props.onApplyLabel(e.target.value, mode)
   }
 
   render () {
@@ -46,14 +55,14 @@ class Toolbar extends Component {
           Mark As Unread
         </button>
 
-        <select className='form-control label-select'>
+        <select className='form-control label-select' id='addLabel' onChange={this.handleLabel}>
           <option>Apply label</option>
           <option value='dev'>dev</option>
           <option value='personal'>personal</option>
           <option value='gschool'>gschool</option>
         </select>
 
-        <select className='form-control label-select'>
+        <select className='form-control label-select' id='removeLabel' onChange={this.handleLabel}>
           <option>Remove label</option>
           <option value='dev'>dev</option>
           <option value='personal'>personal</option>

@@ -53,3 +53,18 @@ describe('The select button', () => {
     expect(clicked).toEqual(true)
   })
 })
+
+describe('The handle label buttons', () => {
+  it('calls the handle function on change', () => {
+    let l
+    let m
+    const handler = (label, mode) => {
+      l = label
+      m = mode
+    }
+    const wrapper = shallow(<Toolbar onApplyLabel={handler} />).find('#addLabel')
+    wrapper.simulate('change', {target: {value: 'foo', id: 'addLabel'}})
+    expect(l).toEqual('foo')
+    expect(m).toEqual('add')
+  })
+})
