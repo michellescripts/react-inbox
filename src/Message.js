@@ -8,8 +8,12 @@ class Message extends Component {
     starred: PropTypes.bool,
     subject: PropTypes.string.isRequired,
     labels: PropTypes.arrayOf(PropTypes.string),
-    expanded: PropTypes.bool,
     text: PropTypes.string
+  }
+
+  constructor () {
+    super()
+    this.state = {expanded: false}
   }
 
   renderInput () {
@@ -27,8 +31,12 @@ class Message extends Component {
     })
   }
 
+  handleClick = () => {
+    this.setState({expanded: !this.state.expanded})
+  }
+
   renderText () {
-    if (!this.props.expanded) {
+    if (!this.state.expanded) {
       return undefined
     }
     return (
@@ -65,7 +73,7 @@ class Message extends Component {
           </div>
           <div className="col-xs-11">
             {this.renderLabels()}
-            <a>
+            <a onClick={this.handleClick}>
               {this.props.subject}
             </a>
           </div>

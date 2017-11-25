@@ -67,11 +67,19 @@ describe('When labels are added to a message', () => {
   })
 })
 
-describe('When a message is expanded', () => {
-  it('displays the message text', () => {
+describe('The message body text', () => {
+  it('is hidden by default', () => {
     const text = 'This is the main text'
-    const wrapper = shallow(<Message subject='abc' expanded text={text} />)
+    const wrapper = shallow(<Message subject='abc' text={text} />)
+    expect(wrapper.find('.message-body').length).toEqual(0)
+  })
+  it('is expanded when clicked', () => {
+    const text = 'This is the main text'
+    const wrapper = shallow(<Message subject='abc' text={text} />)
+    const subject = wrapper.find('a')
+    expect(wrapper.state().expanded).toEqual(false)
+    subject.simulate('click')
+    expect(wrapper.state().expanded).toEqual(true)
     expect(wrapper.find('.message-body').length).toEqual(1)
-    expect(wrapper.find('.message-body').text().includes(text)).toEqual(true)
   })
 })
