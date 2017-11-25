@@ -31,6 +31,16 @@ class App extends Component {
      this.setState({messages: this.state.messages.map((message) => ({... message, selected: newValue}))})
   }
 
+  handleMarkRead = () => {
+    const newMessages = this.state.messages.map((message) => {
+      if (!message.selected){
+        return message
+      }
+      return {...message, read: true}
+    })
+    this.setState({messages: newMessages})
+  }
+
   getCount = () => {
     return this.state.messages.filter((message) => !message.read).length
   }
@@ -76,6 +86,7 @@ class App extends Component {
               onComposeClicked={this.handleCompose}
               select={this.getSelectState()}
               onSelectClicked={this.handleSelect}
+              onMarkReadClicked={this.handleMarkRead}
             />
             {this.renderComposeIfComposing()}
           </div>

@@ -6,7 +6,8 @@ class Toolbar extends Component {
     composing: PropTypes.bool,
     onComposeClicked: PropTypes.func,
     select: PropTypes.oneOf(['all', 'some', 'none']),
-    onSelectClicked: PropTypes.func
+    onSelectClicked: PropTypes.func,
+    onMarkReadClicked: PropTypes.func
   }
 
   getSelectClass () {
@@ -36,7 +37,7 @@ class Toolbar extends Component {
           <i className={'fa ' + this.getSelectClass()}/>
         </button>
 
-        <button className='btn btn-default'>
+        <button className='btn btn-default' onClick={this.props.onMarkReadClicked}>
           Mark As Read
         </button>
 

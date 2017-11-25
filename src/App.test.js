@@ -61,3 +61,16 @@ describe('The select button', () => {
     expect(selectedCount).toEqual(0)
   })
 })
+
+describe('the mark as read button', () => {
+  it('updates read state to true for selected messages', () => {
+    const wrapper = shallow(<App />)
+    wrapper.instance().handleMarkRead()
+    const messages = wrapper.state().messages
+    for (const m of messages) {
+      if (m.selected === true) {
+        expect(m.read).toEqual(true)
+      }
+    }
+  })
+})
