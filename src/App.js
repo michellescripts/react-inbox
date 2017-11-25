@@ -3,6 +3,7 @@ import Toolbar from './Toolbar'
 import Unread from './Unread'
 import MessageList from './MessageList'
 import messages from './testdata'
+import ComposeForm from './ComposeForm'
 
 class App extends Component {
   render () {
@@ -12,6 +13,7 @@ class App extends Component {
           <div className='col-md-12'>
             <Unread count={3} />
             <Toolbar />
+            <ComposeForm />
           </div>
         </div>
         <MessageList messages={messages} />
