@@ -34,3 +34,12 @@ describe('The unread indicator', () => {
     expect(wrapper.find(Unread).props().count).toEqual(unread)
   })
 })
+
+describe('The starred handler', () => {
+  it('updates state', () => {
+    const wrapper = shallow(<App />)
+    const originalState = wrapper.state().messages[1].starred
+    wrapper.instance().handleMessageStarred(1)
+    expect(wrapper.state().messages[1].starred).toEqual(!originalState)
+  })
+})

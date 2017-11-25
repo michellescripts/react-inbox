@@ -8,7 +8,8 @@ class Message extends Component {
     starred: PropTypes.bool,
     subject: PropTypes.string.isRequired,
     labels: PropTypes.arrayOf(PropTypes.string),
-    text: PropTypes.string
+    text: PropTypes.string,
+    onStarred: PropTypes.func
   }
 
   constructor () {
@@ -67,7 +68,7 @@ class Message extends Component {
                 {this.renderInput()}
               </div>
               <div className="col-xs-2">
-                <i className={star}></i>
+                <i className={star} onClick={this.props.onStarred}></i>
               </div>
             </div>
           </div>

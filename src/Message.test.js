@@ -44,15 +44,27 @@ describe('When the message is not selected', () => {
   })
 })
 
-it('fills in the star when starred', () => {
-  const wrapper = shallow(<Message subject='abc' starred />)
-  expect(wrapper.find('.star').hasClass('fa-star')).toEqual(true)
-})
+describe('Starred Messages', () => {
+  it('fills in the star when starred', () => {
+    const wrapper = shallow(<Message subject='abc' starred />)
+    expect(wrapper.find('.star').hasClass('fa-star')).toEqual(true)
+  })
 
-it('displays an empty star by default', () => {
-  const wrapper = shallow(<Message subject='abc' />).find('.star')
-  expect(wrapper.hasClass('fa-star')).toEqual(false)
-  expect(wrapper.hasClass('fa-star-o')).toEqual(true)
+  it('displays an empty star by default', () => {
+    const wrapper = shallow(<Message subject='abc' />).find('.star')
+    expect(wrapper.hasClass('fa-star')).toEqual(false)
+    expect(wrapper.hasClass('fa-star-o')).toEqual(true)
+  })
+
+  it('calls the handler when clicked', () => {
+    let clicked = false
+    const handler = () => {
+      clicked = true
+    }
+    const wrapper = shallow(<Message subject='hi' onStarred={handler} />).find('.star')
+    wrapper.simulate('click')
+    expect(clicked).toEqual(true)
+  })
 })
 
 describe('When labels are added to a message', () => {

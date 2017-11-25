@@ -29,6 +29,15 @@ class App extends Component {
     return this.state.messages.filter((message) => !message.read).length
   }
 
+  handleMessageStarred = (i) => {
+    const newMessages = [
+      ...this.state.messages.slice(0, i),
+      { ...this.state.messages[i], starred: !this.state.messages[i].starred },
+      ...this.state.messages.slice(i + 1)
+    ]
+    this.setState({messages: newMessages})
+  }
+
   render () {
     return (
       <div>
@@ -39,7 +48,7 @@ class App extends Component {
             {this.renderComposeIfComposing()}
           </div>
         </div>
-        <MessageList messages={this.state.messages} />
+        <MessageList messages={this.state.messages} onMessageStarred={this.handleMessageStarred}/>
       </div>
     )
   }
