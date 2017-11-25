@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Toolbar extends Component {
+  static propTypes = {
+    composing: PropTypes.bool,
+    onComposeClicked: PropTypes.func
+  }
   render () {
+    let composeButtonClass = 'fa'
+    composeButtonClass += !this.props.composing
+      ? ' fa-plus'
+      : ' fa-times'
     return (
       <div>
-        <a className='btn btn-danger'>
-          <i className='fa fa-plus' />
+        <a className='btn btn-danger' onClick={this.props.onComposeClicked}>
+          <i className={composeButtonClass} />
         </a>
 
         <button className='btn btn-default'>
