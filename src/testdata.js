@@ -4,7 +4,8 @@ const messages = [
     'subject': "You can't input the protocol without calculating the mobile RSS protocol!",
     'read': false,
     'starred': true,
-    'labels': ['dev', 'personal']
+    'labels': ['dev', 'personal'],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 2,
@@ -12,14 +13,16 @@ const messages = [
     'read': false,
     'starred': false,
     'selected': true,
-    'labels': []
+    'labels': [],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 3,
     'subject': 'Use the 1080p HTTP feed, then you can parse the cross-platform hard drive!',
     'read': false,
     'starred': true,
-    'labels': ['dev']
+    'labels': ['dev'],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 4,
