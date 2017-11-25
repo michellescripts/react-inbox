@@ -4,6 +4,10 @@ class Toolbar extends Component {
   render () {
     return (
       <div>
+        <a className='btn btn-danger'>
+          <i className='fa fa-plus' />
+        </a>
+
         <button className='btn btn-default'>
           <i className='fa fa-check-square-o' />
         </button>
