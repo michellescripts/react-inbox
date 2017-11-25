@@ -9,18 +9,13 @@ class Message extends Component {
     subject: PropTypes.string.isRequired,
     labels: PropTypes.arrayOf(PropTypes.string),
     text: PropTypes.string,
-    onStarred: PropTypes.func
+    onStarred: PropTypes.func,
+    onSelected: PropTypes.func
   }
 
   constructor () {
     super()
     this.state = {expanded: false}
-  }
-
-  renderInput () {
-    return this.props.selected
-      ? <input type="checkbox" checked="checked"/>
-      : <input type="checkbox" />
   }
 
   renderLabels () {
@@ -65,7 +60,7 @@ class Message extends Component {
           <div className="col-xs-1">
             <div className="row">
               <div className="col-xs-2">
-                {this.renderInput()}
+                <input type="checkbox" onChange={this.props.onSelected} checked={!!this.props.selected} />
               </div>
               <div className="col-xs-2">
                 <i className={star} onClick={this.props.onStarred}></i>

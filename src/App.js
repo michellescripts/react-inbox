@@ -38,6 +38,15 @@ class App extends Component {
     this.setState({messages: newMessages})
   }
 
+  handleMessageSelected = (i) => {
+    const newMessages = [
+      ...this.state.messages.slice(0, i),
+      { ...this.state.messages[i], selected: !(!!this.state.messages[i].selected) },
+      ...this.state.messages.slice(i + 1)
+    ]
+    this.setState({messages: newMessages})
+  }
+
   render () {
     return (
       <div>
@@ -48,7 +57,11 @@ class App extends Component {
             {this.renderComposeIfComposing()}
           </div>
         </div>
-        <MessageList messages={this.state.messages} onMessageStarred={this.handleMessageStarred}/>
+        <MessageList
+          messages={this.state.messages}
+          onMessageStarred={this.handleMessageStarred}
+          onMessageSelected={this.handleMessageSelected}
+        />
       </div>
     )
   }

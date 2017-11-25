@@ -27,7 +27,7 @@ describe('When the message is selected', () => {
     expect(wrapper.find('.row .message').hasClass('selected')).toEqual(true)
   })
   it('checks the checkbox', () => {
-    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual('checked')
+    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual(true)
   })
 })
 
@@ -40,7 +40,7 @@ describe('When the message is not selected', () => {
     expect(wrapper.find('.row .message').hasClass('selected')).toEqual(false)
   })
   it('does not check the checkbox', () => {
-    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual(undefined)
+    expect(wrapper.find('input[type="checkbox"]').prop('checked')).toEqual(false)
   })
 })
 
