@@ -8,7 +8,10 @@ import ComposeForm from './ComposeForm'
 class App extends Component {
   constructor () {
     super()
-    this.state = {composing: false}
+    this.state = {
+      composing: false,
+      messages: messages
+    }
   }
 
   renderComposeIfComposing () {
@@ -23,7 +26,7 @@ class App extends Component {
   }
 
   getCount = () => {
-    return messages.filter((message) => !message.read).length
+    return this.state.messages.filter((message) => !message.read).length
   }
 
   render () {
@@ -36,7 +39,7 @@ class App extends Component {
             {this.renderComposeIfComposing()}
           </div>
         </div>
-        <MessageList messages={messages} />
+        <MessageList messages={this.state.messages} />
       </div>
     )
   }
