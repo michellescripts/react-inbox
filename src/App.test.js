@@ -43,3 +43,21 @@ describe('The starred handler', () => {
     expect(wrapper.state().messages[1].starred).toEqual(!originalState)
   })
 })
+
+describe('The select button', () => {
+  it('selects all when none or some messages are selected', () => {
+    const wrapper = shallow(<App />)
+    wrapper.instance().handleSelect()
+    const messages = wrapper.state().messages
+    const selectedCount = messages.filter(m => !!m.selected).length
+    expect(selectedCount).toEqual(messages.length)
+  })
+  it('deselects all when all messages are selected', () => {
+    const wrapper = shallow(<App />)
+    wrapper.instance().handleSelect()
+    wrapper.instance().handleSelect()
+    const messages = wrapper.state().messages
+    const selectedCount = messages.filter(m => !!m.selected).length
+    expect(selectedCount).toEqual(0)
+  })
+})

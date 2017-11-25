@@ -6,6 +6,7 @@ class Toolbar extends Component {
     composing: PropTypes.bool,
     onComposeClicked: PropTypes.func,
     select: PropTypes.oneOf(['all', 'some', 'none']),
+    onSelectClicked: PropTypes.func
   }
 
   getSelectClass () {
@@ -31,8 +32,8 @@ class Toolbar extends Component {
           <i className={composeButtonClass} />
         </a>
 
-        <button className='btn btn-default'>
-          <i className={'fa ' + this.getSelectClass()} id='selectButton'/>
+        <button className='btn btn-default' id='selectButton' onClick={this.props.onSelectClicked}>
+          <i className={'fa ' + this.getSelectClass()}/>
         </button>
 
         <button className='btn btn-default'>

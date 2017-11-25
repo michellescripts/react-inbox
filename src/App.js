@@ -25,6 +25,12 @@ class App extends Component {
     this.setState({composing: !this.state.composing})
   }
 
+  handleSelect = () => {
+     const selected= this.state.messages.filter((message) => !!message.selected).length
+     const newValue= selected !== this.state.messages.length
+     this.setState({messages: this.state.messages.map((message) => ({... message, selected: newValue}))})
+  }
+
   getCount = () => {
     return this.state.messages.filter((message) => !message.read).length
   }
@@ -69,6 +75,7 @@ class App extends Component {
               composing={this.state.composing}
               onComposeClicked={this.handleCompose}
               select={this.getSelectState()}
+              onSelectClicked={this.handleSelect}
             />
             {this.renderComposeIfComposing()}
           </div>

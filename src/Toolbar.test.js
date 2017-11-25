@@ -30,14 +30,26 @@ describe('The compose button ', () => {
 describe('The select button', () => {
   it('displays a checked checkbox when all messages are selected', () => {
     const wrapper = shallow(<Toolbar select='all' />)
-    expect(wrapper.find('#selectButton').hasClass('fa-check-square-o')).toEqual(true)
+    expect(wrapper.find('#selectButton > i').hasClass('fa-check-square-o')).toEqual(true)
   })
   it('displays a dashed checkbox when some messages are selected', () => {
     const wrapper = shallow(<Toolbar select='some' />)
-    expect(wrapper.find('#selectButton').hasClass('fa-minus-square-o')).toEqual(true)
+    expect(wrapper.find('#selectButton > i').hasClass('fa-minus-square-o')).toEqual(true)
   })
   it('displays an empty checkbox when no messages are selected', () => {
     const wrapper = shallow(<Toolbar select='none' />)
-    expect(wrapper.find('#selectButton').hasClass('fa-square-o')).toEqual(true)
+    expect(wrapper.find('#selectButton > i').hasClass('fa-square-o')).toEqual(true)
+  })
+})
+
+describe('The select button', () => {
+  it('calls the handler when clicked', () => {
+    let clicked = false
+    const handler = () => {
+      clicked = true
+    }
+    const wrapper = shallow(<Toolbar onSelectClicked={handler} />).find('#selectButton')
+    wrapper.simulate('click')
+    expect(clicked).toEqual(true)
   })
 })
