@@ -65,11 +65,24 @@ describe('The select button', () => {
 describe('the mark as read button', () => {
   it('updates read state to true for selected messages', () => {
     const wrapper = shallow(<App />)
-    wrapper.instance().handleMarkRead()
+    wrapper.instance().handleMarkRead(true)
     const messages = wrapper.state().messages
     for (const m of messages) {
       if (m.selected === true) {
         expect(m.read).toEqual(true)
+      }
+    }
+  })
+})
+
+describe('the mark as unread button', () => {
+  it('updates read state to false for selected messages', () => {
+    const wrapper = shallow(<App />)
+    wrapper.instance().handleMarkRead(false)
+    const messages = wrapper.state().messages
+    for (const m of messages) {
+      if (m.selected === true) {
+        expect(m.read).toEqual(false)
       }
     }
   })

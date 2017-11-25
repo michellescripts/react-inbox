@@ -31,12 +31,12 @@ class App extends Component {
      this.setState({messages: this.state.messages.map((message) => ({... message, selected: newValue}))})
   }
 
-  handleMarkRead = () => {
+  handleMarkRead = (read) => {
     const newMessages = this.state.messages.map((message) => {
       if (!message.selected){
         return message
       }
-      return {...message, read: true}
+      return {...message, read}
     })
     this.setState({messages: newMessages})
   }
@@ -86,7 +86,8 @@ class App extends Component {
               onComposeClicked={this.handleCompose}
               select={this.getSelectState()}
               onSelectClicked={this.handleSelect}
-              onMarkReadClicked={this.handleMarkRead}
+              onMarkReadClicked={() => this.handleMarkRead(true)}
+              onMarkUnreadClicked={() => this.handleMarkRead(false)}
             />
             {this.renderComposeIfComposing()}
           </div>
