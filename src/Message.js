@@ -6,13 +6,38 @@ class Message extends Component {
     read: PropTypes.bool,
     selected: PropTypes.bool,
     starred: PropTypes.bool,
-    text: PropTypes.string.isRequired
+    subject: PropTypes.string.isRequired,
+    labels: PropTypes.arrayOf(PropTypes.string),
+    expanded: PropTypes.bool,
+    text: PropTypes.string
   }
 
   renderInput () {
     return this.props.selected
       ? <input type="checkbox" checked="checked"/>
       : <input type="checkbox" />
+  }
+
+  renderLabels () {
+    if (!this.props.labels || this.props.labels.length === 0) {
+        return undefined
+    }
+    return this.props.labels.map((label, i) => {
+      return <span className="label label-warning" key={i}>{label}</span>
+    })
+  }
+
+  renderText () {
+    if (!this.props.expanded) {
+      return undefined
+    }
+    return (
+      <div className="row message-body">
+        <div className="col-xs-11 col-xs-offset-1">
+          {this.props.text}
+        </div>
+      </div>
+    )
   }
 
   render () {
@@ -26,23 +51,27 @@ class Message extends Component {
       ? ' fa-star'
       : ' fa-star-o'
     return (
-      <div className={base}>
-        <div className="col-xs-1">
-          <div className="row">
-            <div className="col-xs-2">
-              {this.renderInput()}
-            </div>
-            <div className="col-xs-2">
-              <i className={star}></i>
+      <div>
+        <div className={base}>
+          <div className="col-xs-1">
+            <div className="row">
+              <div className="col-xs-2">
+                {this.renderInput()}
+              </div>
+              <div className="col-xs-2">
+                <i className={star}></i>
+              </div>
             </div>
           </div>
+          <div className="col-xs-11">
+            {this.renderLabels()}
+            <a>
+              {this.props.subject}
+            </a>
+          </div>
         </div>
-        <div className="col-xs-11">
-          <a>
-            {this.props.text}
-          </a>
-        </div>
-      </div>
+      {this.renderText()}
+    </div>
     )
   }
 }
