@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import ComposeForm from './ComposeForm'
 import Toolbar from './Toolbar'
+import Unread from './Unread'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
@@ -23,5 +24,13 @@ describe('The compose form', () => {
 
     // TODO: why??
     // expect(wrapper.find(ComposeForm).length).toEqual(1)
+  })
+})
+
+describe('The unread indicator', () => {
+  it('displays the correct number of unread messages', () => {
+    const unread = 4
+    const wrapper = shallow(<App />)
+    expect(wrapper.find(Unread).props().count).toEqual(unread)
   })
 })

@@ -22,12 +22,16 @@ class App extends Component {
     this.setState({composing: !this.state.composing})
   }
 
+  getCount = () => {
+    return messages.filter((message) => !message.read).length
+  }
+
   render () {
     return (
       <div>
         <div className='row toolbar'>
           <div className='col-md-12'>
-            <Unread count={3} />
+            <Unread count={this.getCount()} />
             <Toolbar composing={this.state.composing} onComposeClicked={this.handleCompose} />
             {this.renderComposeIfComposing()}
           </div>
