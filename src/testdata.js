@@ -30,35 +30,40 @@ const messages = [
     'read': true,
     'starred': false,
     'selected': true,
-    'labels': []
+    'labels': [],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 5,
     'subject': 'If we override the interface, we can get to the HTTP feed through the virtual EXE interface!',
     'read': false,
     'starred': false,
-    'labels': ['personal']
+    'labels': ['personal'],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 6,
     'subject': 'We need to back up the wireless GB driver!',
     'read': true,
     'starred': true,
-    'labels': []
+    'labels': [],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 7,
     'subject': 'We need to index the mobile PCI bus!',
     'read': true,
     'starred': false,
-    'labels': ['dev', 'personal']
+    'labels': ['dev', 'personal'],
+    'text': 'Body text shows when expanded'
   },
   {
     'id': 8,
     'subject': 'If we connect the sensor, we can get to the HDD port through the redundant IB firewall!',
     'read': true,
     'starred': true,
-    'labels': []
+    'labels': [],
+    'text': 'Body text shows when expanded'
   }
 ]
 
