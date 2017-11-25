@@ -47,13 +47,29 @@ class App extends Component {
     this.setState({messages: newMessages})
   }
 
+  getSelectState () {
+    const selected= this.state.messages.filter((message) => !!message.selected).length
+    switch(selected) {
+      case 0:
+        return 'none'
+      case this.state.messages.length:
+        return 'all'
+      default:
+        return 'some'
+    }
+  }
+
   render () {
     return (
       <div>
         <div className='row toolbar'>
           <div className='col-md-12'>
             <Unread count={this.getCount()} />
-            <Toolbar composing={this.state.composing} onComposeClicked={this.handleCompose} />
+            <Toolbar
+              composing={this.state.composing}
+              onComposeClicked={this.handleCompose}
+              select={this.getSelectState()}
+            />
             {this.renderComposeIfComposing()}
           </div>
         </div>
