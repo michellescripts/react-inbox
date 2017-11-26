@@ -57,13 +57,10 @@ describe('Starred Messages', () => {
   })
 
   it('calls the handler when clicked', () => {
-    let clicked = false
-    const handler = () => {
-      clicked = true
-    }
+    const handler = jest.fn()
     const wrapper = shallow(<Message subject='hi' onStarred={handler} />).find('.star')
     wrapper.simulate('click')
-    expect(clicked).toEqual(true)
+    expect(handler).toBeCalled()
   })
 })
 

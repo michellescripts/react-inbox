@@ -11,13 +11,10 @@ it('renders each message', () => {
 
 describe('Starred messages', () => {
   it('calls the handler with the correct message number when clicked', () => {
-    let messageNumber = -1
-    const handler = (i) => {
-      messageNumber = i
-    }
+    const handler = jest.fn()
     const wrapper = shallow(<MessageList messages={messages} onMessageStarred={handler} />)
     const messageWrapper = wrapper.childAt(2)
     messageWrapper.props().onStarred()
-    expect(messageNumber).toEqual(2)
+    expect(handler).toBeCalledWith(2)
   })
 })

@@ -17,13 +17,10 @@ describe('The compose button ', () => {
     expect(wrapper.hasClass('fa-times')).toEqual(true)
   })
   it('calls the handler when clicked', () => {
-    let clicked = false
-    const handler = () => {
-      clicked = true
-    }
+    const handler = jest.fn()
     const wrapper = shallow(<Toolbar onComposeClicked={handler} />).find('.btn-danger')
     wrapper.simulate('click')
-    expect(clicked).toEqual(true)
+    expect(handler).toBeCalled()
   })
 })
 
@@ -44,27 +41,18 @@ describe('The select button', () => {
 
 describe('The select button', () => {
   it('calls the handler when clicked', () => {
-    let clicked = false
-    const handler = () => {
-      clicked = true
-    }
+    const handler = jest.fn()
     const wrapper = shallow(<Toolbar onSelectClicked={handler} />).find('#selectButton')
     wrapper.simulate('click')
-    expect(clicked).toEqual(true)
+    expect(handler).toBeCalled()
   })
 })
 
 describe('The handle label buttons', () => {
   it('calls the handle function on change', () => {
-    let l
-    let m
-    const handler = (label, mode) => {
-      l = label
-      m = mode
-    }
+    const handler = jest.fn()
     const wrapper = shallow(<Toolbar onApplyLabel={handler} />).find('#addLabel')
     wrapper.simulate('change', {target: {value: 'foo', id: 'addLabel'}})
-    expect(l).toEqual('foo')
-    expect(m).toEqual('add')
+    expect(handler).toBeCalledWith('foo', 'add')
   })
 })
