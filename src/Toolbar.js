@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Toolbar extends Component {
+class Toolbar extends PureComponent {
   static propTypes = {
     composing: PropTypes.bool,
     onComposeClicked: PropTypes.func,

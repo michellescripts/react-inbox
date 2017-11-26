@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Message extends Component {
+class Message extends PureComponent {
   static propTypes = {
     read: PropTypes.bool,
     selected: PropTypes.bool,

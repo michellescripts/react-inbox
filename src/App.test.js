@@ -21,9 +21,6 @@ describe('The compose form', () => {
     expect(wrapper.state().composing).toEqual(false)
     wrapper.instance().handleCompose()
     expect(wrapper.state().composing).toEqual(true)
-
-    // TODO: why??
-    // expect(wrapper.find(ComposeForm).length).toEqual(1)
   })
 })
 
